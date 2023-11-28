@@ -1,90 +1,80 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
-import "./Todolist.css"
+import "./Todolist.css";
 import { ImPencil2 } from "react-icons/im";
 import { FaCheck } from "react-icons/fa6";
 import { MdMovieEdit } from "react-icons/md";
 import { TbTrashOff } from "react-icons/tb";
 // import { useState } from "react";
 
-export default function Todolist({input,inputHandeler,
-  addTodo,todos,deletTodo,iditTodo,updet,updateTodo,
-  clearEnter, complet, setComplet, chekId}) {
-
-return (
+export default function Todolist({
+  input,
+  inputHandeler,
+  addTodo,
+  todos,
+  deletTodo,
+  iditTodo,
+  updet,
+  updateTodo,
+  clearEnter,
+  UpdateEnter,
+  complet,
+  setComplet,
+  chekId,
+}) {
+  return (
     <>
-        <div className="container">
-            <div className="input-sec">
-                <i className="pencil"><ImPencil2 /></i>
-                <input type="text"
-                value={input}
-                onChange={inputHandeler}
-                onKeyDown={clearEnter}
-                placeholder="Write a new task"                  
-                />
-                <button 
-                onClick={updet ? addTodo : updateTodo}
-                className="add-todo">{updet ? "Add todo" : "Updetodo"}</button>
-            </div>
-            <ul className="todo-ul">
-                {
-                    todos.map((todo,index)=>(
-                        <li key={index}>
-                            <hr />
-                            <div className="list">
-                                <div className="chek"
-                                  onClick={()=>chekId(index)}
-                                >
-                                  <span className="span">
-                                      <FaCheck />
-                                  </span>                       
-                                </div>
-                                {
-                                  complet === true ? <p style={{textDecoration:"line-through"}} className="todos-p">
-                                  {todo}
-                                </p> : <p className="todos-p">{todo}</p>
-                                }
-                                
-                                <span 
-                                onClick={()=>iditTodo(index)}
-                                className="span chek">
-                                <MdMovieEdit />
-                                </span>
-                                <span className="span chek"
-                                onClick={()=>deletTodo(index)}                                
-                                >
-                                <TbTrashOff />
-                                </span>
-                            </div>
-                        </li>
-                    ))
-                }
-
-                {/* <li>
-                    <hr />
-                    <div className="list">
-                        <div className="chek">
-                        <span className="span">
-                            <FaCheck />
-                        </span>
-                            <p>
-                                <strike></strike>
-                            </p>
-                        </div>
-                        <span className="span chek">
-                        <MdMovieEdit />
-                        </span>
-                        <span className="span chek">
-                        <TbTrashOff />
-                        </span>
-                    </div>
-                </li> */}
-            </ul>
+      <div className="container">
+        <div className="input-sec">
+          <i className="pencil">
+            <ImPencil2 />
+          </i>
+          <input
+            type="text"
+            value={input}
+            onChange={inputHandeler}
+            onKeyDown={updet ? clearEnter:UpdateEnter}
+            placeholder="Write a new task"
+          />
+          <button onClick={updet ? addTodo : updateTodo} className="add-todo">
+            {updet ? "Add todo" : "Updetodo"}
+          </button>
         </div>
+        <ul className="todo-ul">
+          {todos.map((todo, index) => (
+            <li key={index}>
+              <hr />
+              <div className="list">
+                <div className="chek" onClick={() => chekId(index)}>
+                  <span className="span">
+                    <FaCheck />
+                  </span>
+                </div>
+                {complet === true ? (
+                  <p
+                    style={{ textDecoration: "line-through" }}
+                    className="todos-p"
+                  >
+                    {todo}
+                  </p>
+                ) : (
+                  <p className="todos-p">{todo}</p>
+                )}
 
+                <span onClick={() => iditTodo(index)} className="span chek">
+                  <MdMovieEdit />
+                </span>
+                <span className="span chek" onClick={() => deletTodo(index)}>
+                  <TbTrashOff />
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        {/* <div className="Todo-sec">
+      {/* <div className="Todo-sec">
         <div className="Todo-innet-sec">
                     <div className="Todo-input">
                       <input
@@ -137,5 +127,5 @@ return (
         </div>
       </div> */}
     </>
-  )
+  );
 }
