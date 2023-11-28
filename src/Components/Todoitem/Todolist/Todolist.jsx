@@ -32,6 +32,7 @@ export default function Todolist({
           </i>
           <input
             type="text"
+            maxLength={42}
             value={input}
             onChange={inputHandeler}
             onKeyDown={updet ? clearEnter:UpdateEnter}
