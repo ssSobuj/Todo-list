@@ -1,11 +1,13 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
 import "./Todolist.css";
 import { ImPencil2 } from "react-icons/im";
-import { FaCheck } from "react-icons/fa6";
-import { MdMovieEdit } from "react-icons/md";
-import { TbTrashOff } from "react-icons/tb";
+
+import TodoLI from "./TodoLI";
+import { useState } from "react";
 // import { useState } from "react";
 
 export default function Todolist({
@@ -14,15 +16,19 @@ export default function Todolist({
   addTodo,
   todos,
   deletTodo,
-  iditTodo,
   updet,
   updateTodo,
   clearEnter,
   UpdateEnter,
-  complet,
-  setComplet,
-  chekId,
-}) {
+  iditTodo
+  
+}) 
+
+{ 
+
+ 
+
+
   return (
     <>
       <div className="container">
@@ -39,38 +45,13 @@ export default function Todolist({
             placeholder="Write a new task"
           />
           <button onClick={updet ? addTodo : updateTodo} className="add-todo">
-            {updet ? "Add todo" : "Updetodo"}
+            {updet ? "Add todo" : "Update Todo"}
           </button>
         </div>
         <ul className="todo-ul">
-          {todos.map((todo, index) => (
-            <li key={index}>
-              <hr />
-              <div className="list">
-                <div className="chek" onClick={() => chekId(index)}>
-                  <span className="span">
-                    <FaCheck />
-                  </span>
-                </div>
-                {complet === true ? (
-                  <p
-                    style={{ textDecoration: "line-through" }}
-                    className="todos-p"
-                  >
-                    {todo}
-                  </p>
-                ) : (
-                  <p className="todos-p">{todo}</p>
-                )}
-
-                <span onClick={() => iditTodo(index)} className="span chek">
-                  <MdMovieEdit />
-                </span>
-                <span className="span chek" onClick={() => deletTodo(index)}>
-                  <TbTrashOff />
-                </span>
-              </div>
-            </li>
+          {todos.map((todo,index) => (
+            <TodoLI deletTodo={deletTodo} 
+            iditTodo={iditTodo} todo={todo} index={index}/>
           ))}
         </ul>
       </div>

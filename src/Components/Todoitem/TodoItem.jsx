@@ -3,19 +3,17 @@
 /* eslint-disable no-unused-vars */
 import Todolist from "./Todolist/Todolist";
 import "./TodoItem";
-import { useState } from "react";
+import { useId, useState } from "react";
 
 export default function TodoItem() {
   const [input, setInput] = useState("");
   const [todos, setTodo] = useState([]);
   const [updet, setUpdet] = useState(true);
   const [iditid, seIditid] = useState(0);
-  const [complet, setComplet] = useState(false);
 
   const inputHandeler = (e) => {
     setInput(e.target.value);
   };
-
 
   const addTodo = () => {
     if (input.trim() !== "") {
@@ -40,11 +38,6 @@ export default function TodoItem() {
     setUpdet(true);
   };
   
-  const chekId = (id) => {
-    if (id === id) {
-      setComplet(true);
-    }
-  };
 
   const clearEnter = (e) => {
     if (e.key === "Enter") {
@@ -72,9 +65,6 @@ export default function TodoItem() {
           updet={updet}
           updateTodo={updateTodo}
           clearEnter={clearEnter}
-          complet={complet}
-          setComplet={setComplet}
-          chekId={chekId}
           UpdateEnter={UpdateEnter}
         />
       </div>
